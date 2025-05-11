@@ -1,0 +1,64 @@
+import java.util.*;
+class Insert
+{
+    String s;
+    String w;
+    int p;
+    char ch;
+    Insert() 
+    {
+        s = " ";
+        w = " ";
+        p = 0;
+        ch = '\u0000';
+    }
+    void accept() 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a sentence which must end with '.', '?', or '!' only:");
+        s = sc.nextLine().toUpperCase();
+        ch = s.charAt(s.length() - 1);
+        if (ch != '.' && ch != '?' && ch != '!')
+        {
+            System.out.println("Invalid input");
+            System.exit(0);
+        }
+        System.out.println("Word to be inserted:");
+        w = sc.next().toUpperCase();
+        System.out.println("Word position:");
+        p = sc.nextInt();
+    }
+    void perform() 
+    {
+        String ns = "";
+        s = s.substring(0, s.length() - 1); 
+        String[] words = s.split(" ");
+        if (p < 1 || p > words.length + 1)
+        {
+            System.out.println("Invalid position");
+            return;
+        }
+        for (int i = 0; i < words.length; i++) 
+        {
+            if (i == p - 1) {
+                ns += w + " ";
+            }
+            ns += words[i] + " ";
+        }
+        if (p == words.length + 1)
+        {
+            ns += w + " ";
+        }
+        ns = ns.trim() + ch; 
+        System.out.println("Word to be inserted: " + w);
+        System.out.println("Word position: " + p);
+        System.out.println("The new sentence is: " + ns);
+    }
+    public static void main()
+    {
+        Insert obj = new Insert();
+        obj.accept();
+        obj.perform();
+    }
+}
+

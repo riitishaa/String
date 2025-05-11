@@ -1,0 +1,44 @@
+import java.util.*;
+class Commonwords
+{
+    void main()
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a paragraph");
+        String p = sc.nextLine().trim();
+        if (p.endsWith(".") && p.endsWith("!") && p.endsWith("?"))
+        {
+            System.out.println("Invalid");
+            return;
+        }
+        String[] s = p.split("[.!?]");
+        if (s.length != 2) {
+            System.out.println("Invalid");
+            return;
+        }
+        String[] words1 = s[0].trim().split(" +");
+        String[] words2 = s[1].trim().split(" +");
+        System.out.println("Sentence 1: " + words1.length + " words");
+        System.out.println("Sentence 2: " + words2.length + " words");
+        StringBuilder common = new StringBuilder();
+        for (String word1 : words1)
+        {
+            for (String word2 : words2)
+            {
+                if (word1.equals(word2) && common.indexOf(word1) == -1)
+                {
+                    common.append(word1).append(" ");
+                }
+            }
+        }
+        if (common.length() > 0) 
+        {
+            System.out.println("Common words: " + common.toString().trim());
+        }
+        else
+        {
+            System.out.println("Common words: None");
+        }
+    }
+}
+

@@ -1,0 +1,38 @@
+import java.util.*;
+class Delete 
+{
+    void main() 
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a sentence");
+        String s = sc.nextLine().toUpperCase();
+        if (s.endsWith(",") || s.endsWith("?") || s.endsWith("!"))
+        {
+            System.out.println("Invalid");
+            System.exit(0);
+        }
+        s = s.trim();
+        System.out.println("Enter a word to be deleted");
+        String word = sc.next();
+        System.out.println("Enter position");
+        int pos = sc.nextInt(); 
+        String wrd = ""; 
+        String s2 = "";
+        int p = 0, count = 0;
+        for (int i = 0; i <= s.length(); i++)
+        {
+            if (i == s.length() || s.charAt(i) == ' ') 
+            {
+                wrd = s.substring(p, i); 
+                count++;
+                if (!(wrd.equalsIgnoreCase(word) && count == pos))
+                {
+                    s2 += wrd + " ";
+                }
+                p = i + 1;
+            }
+        } 
+        s2 = s2.trim(); 
+        System.out.println("New sentence: " + s2);
+    }
+}

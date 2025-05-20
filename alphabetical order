@@ -1,0 +1,37 @@
+import java.util.*;
+class Sentence
+{
+      void main()
+      {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter a sentence");
+        String s=sc.nextLine().toUpperCase();
+        if(s.endsWith(".")||s.endsWith("?")||s.endsWith("!"))
+        {
+            System.out.println("Invalid");
+            System.exit(0);
+        }
+        s=s.trim(); 
+        String s2=" ";
+        String st[]=s.split(" |\\.|\\?|\\!|\\,");
+        for(int i=0;i<st.length;i++)
+        {
+            for(int j=0;j<st.length-1-i;j++)
+            {
+                if(st[j].compareTo (st[j+1])>0)
+                {
+                    String temp=st[j];
+                    st[j]=st[j+1];
+                    st[j+1]=temp;
+                }
+            }
+        }
+        for(int i=0;i<st.length;i++)
+        {
+            s2+=st[i]+" ";
+        }
+            System.out.println("The new sentence in alphabetical order is :"+s2);
+        
+    }
+}
+
